@@ -17,7 +17,7 @@ except Exception as e:
     st.error(f"Error loading the model: {e}")
 
 def main():
-    st.title("Survived or not")
+    st.title("Car Price Prediction")
     # Input variables
     Age_08_04 = st.text_input("Age_08_04")
     KM = st.text_input("KM") 
