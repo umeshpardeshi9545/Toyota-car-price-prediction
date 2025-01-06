@@ -1,8 +1,20 @@
 import pickle
 import streamlit as st
+import urllib.request
+from sklearn.linear_model import LogisticRegression
 
-# Load the model with a corrected file path
-model = pickle.load(open(r'C:\ExcelR\python\toyotaMLR.pkl', "rb"))
+
+# Raw URL to the model
+url = "https://raw.githubusercontent.com/umeshpardeshi9545/Toyota-car-price-prediction/main/toyotaMLR.pkl"
+
+# Load the model
+try:
+    with urllib.request.urlopen(url) as response:
+        model_data = response.read()  # Read bytes
+        model = pickle.loads(model_data)  # Load model from bytes
+except Exception as e:
+    model = None
+    st.error(f"Error loading the model: {e}")
 
 def main():
     st.title("Survived or not")
